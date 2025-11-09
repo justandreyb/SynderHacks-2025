@@ -466,6 +466,36 @@
                     <div class="product-details">
                         <div class="detail-row">
                             <span class="detail-label label-with-hint">
+                                Stock:
+                                <button type="button" class="hint-icon" aria-label="Help: Stock" aria-describedby="hint-stock-${index}" onclick="toggleHint(event, this)" onblur="hideHint(this)">
+                                    i
+                                    <span class="hint-tooltip" id="hint-stock-${index}" role="tooltip">Current available inventory quantity in all warehouses</span>
+                                </button>
+                            </span>
+                            <span class="detail-value" style="color: ${product.stockQuantity < 50 ? '#ef4444' : '#10b981'};">${product.stockQuantity} units</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label label-with-hint">
+                                Monthly Sales:
+                                <button type="button" class="hint-icon" aria-label="Help: Monthly Sales" aria-describedby="hint-sales-${index}" onclick="toggleHint(event, this)" onblur="hideHint(this)">
+                                    i
+                                    <span class="hint-tooltip" id="hint-sales-${index}" role="tooltip">Total units sold in the last 30 days</span>
+                                </button>
+                            </span>
+                            <span class="detail-value">${product.monthlySales} units</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label label-with-hint">
+                                Monthly Profit:
+                                <button type="button" class="hint-icon" aria-label="Help: Profit" aria-describedby="hint-profit-${index}" onclick="toggleHint(event, this)" onblur="hideHint(this)">
+                                    i
+                                    <span class="hint-tooltip" id="hint-profit-${index}" role="tooltip">Net profit from sales in the last 30 days (revenue minus cost)</span>
+                                </button>
+                            </span>
+                            <span class="detail-value" style="color: ${product.monthlyProfit >= 0 ? '#10b981' : '#ef4444'}; font-weight: 600;">$${product.monthlyProfit.toFixed(2)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label label-with-hint">
                                 COGS:
                                 <button type="button" class="hint-icon" aria-label="Help: COGS" aria-describedby="hint-cogs-${index}" onclick="toggleHint(event, this)" onblur="hideHint(this)">
                                     i

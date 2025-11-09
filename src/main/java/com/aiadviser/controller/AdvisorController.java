@@ -24,6 +24,7 @@ public class AdvisorController {
     private final ChatSessionRepository chatSessionRepository;
     private final FinancialForecastService financialForecastService;
     private final ObjectMapper objectMapper;
+    private final com.aiadviser.service.ProductSummaryService productSummaryService;
 
     public AdvisorController(
             DataAggregatorService dataAggregatorService,
@@ -31,7 +32,8 @@ public class AdvisorController {
             ProductRepository productRepository,
             ChatSessionRepository chatSessionRepository,
             FinancialForecastService financialForecastService,
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            com.aiadviser.service.ProductSummaryService productSummaryService
     ) {
         this.dataAggregatorService = dataAggregatorService;
         this.claudeService = claudeService;
@@ -39,6 +41,7 @@ public class AdvisorController {
         this.chatSessionRepository = chatSessionRepository;
         this.financialForecastService = financialForecastService;
         this.objectMapper = objectMapper;
+        this.productSummaryService = productSummaryService;
     }
 
     @PostMapping("/advise/{sku}")
@@ -86,9 +89,9 @@ public class AdvisorController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductData>> getAllProducts() {
+    public ResponseEntity<List<ProductSummary>> getAllProducts() {
         try {
-            List<ProductData> products = productRepository.findAll();
+            List<ProductSummary> products = productSummaryService.getAllProductSummaries();
             return ResponseEntity.ok(products);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
